@@ -41,7 +41,6 @@ fn part2(buffered: BufReader<File>) -> usize {
     acc
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -79,7 +78,4 @@ mod tests {
         let mut acc = part2(buffered);
         println!("Day 1, Part 2: {}", acc);
     }
-
 }
-
-
