@@ -8,18 +8,18 @@ const SUBMISSION_PATH: &str =
 fn part1(path: &str) -> usize {
     let lines = BufReader::new(File::open(path).unwrap()).lines();
     let (p, d) = lines.fold((0, 0), |acc, l| {
-            let (horizontal_pos, depth) = acc;
-            let s = l.unwrap();
-            let splits: Vec<&str> = s.split(' ').collect();
-            let cmd = splits[0];
-            let val = splits[1].parse::<usize>().unwrap();
-           match cmd {
-               "forward" => (horizontal_pos + val, depth),
-               "up" => (horizontal_pos, depth - val),
-               "down" => (horizontal_pos, depth + val),
-               _ => panic!("Bad command!"),
-           }
-        });
+        let (horizontal_pos, depth) = acc;
+        let s = l.unwrap();
+        let splits: Vec<&str> = s.split(' ').collect();
+        let cmd = splits[0];
+        let val = splits[1].parse::<usize>().unwrap();
+        match cmd {
+            "forward" => (horizontal_pos + val, depth),
+            "up" => (horizontal_pos, depth - val),
+            "down" => (horizontal_pos, depth + val),
+            _ => panic!("Bad command!"),
+        }
+    });
     p * d
 }
 
@@ -41,9 +41,6 @@ fn part2(path: &str) -> usize {
     hpos * depth
 }
 
-// fn read_input(path: &str) -> Vec<(&str, usize)> {
-// }
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -60,7 +57,6 @@ mod tests {
     fn test_submission_part1() {
         let res = part1(SUBMISSION_PATH);
         println!("Day 2, Part 1: {}", res);
-        // assert_eq!(res, 1746616);
     }
 
     #[test]
@@ -73,6 +69,5 @@ mod tests {
     fn test_submission_part2() {
         let mut res = part2(SUBMISSION_PATH);
         println!("Day 2, Part 2: {}", res);
-        // assert_eq!(acc, 1741971043);
     }
 }
