@@ -4,11 +4,10 @@ use std::io::{BufRead, BufReader};
 /// ToDo: rewrite in a more idiomatic and functional way
 /// ToDo: solve in a single pass
 
-fn part1(buffered: BufReader<File>) -> usize {
+fn part1(numbers: Vec<usize>) -> usize {
     let mut prev = usize::MAX;
     let mut acc = 0;
-    for l in buffered.lines() {
-        let number = l.unwrap().parse::<usize>().unwrap();
+    for number in numbers {
         if number > prev {
             acc += 1;
         }
@@ -17,28 +16,19 @@ fn part1(buffered: BufReader<File>) -> usize {
     acc
 }
 
-fn part2(buffered: BufReader<File>) -> usize {
-    let mut lines = buffered.lines();
-    let mut sums: Vec<usize> = Vec::new();
-    let mut sums_vec = Vec::new();
-    let mut current_sum = 0;
-    let mut cnt = 0;
-    while let Some(Ok(s)) = lines.next() {
-        let number = s.parse::<usize>().unwrap();
-        sums_vec.push(number);
-        if sums_vec.len() == 3 {
-            sums.push(sums_vec.iter().sum());
-            sums_vec.remove(0);
-        }
+fn part2(numbers: Vec<usize>) -> usize {
+    let mut triple_sums = Vec::new();
+    for i in 0..(numbers.len() - 3 + 1) {
+        triple_sums.push(numbers[i..(i + 3)].iter().sum())
     }
+    part1(triple_sums)
+}
 
-    let mut acc = 0;
-    for i in 1..(sums.len()) {
-        if sums[i] > sums[i - 1] {
-            acc += 1;
-        }
-    }
-    acc
+fn read_input(path: &str) -> Vec<usize> {
+    let lines = BufReader::new(File::open(path).unwrap()).lines();
+    lines
+        .map(|s| s.unwrap().parse::<usize>().unwrap())
+        .collect()
 }
 
 #[cfg(test)]
@@ -50,32 +40,28 @@ mod tests {
     #[test]
     fn test_sample_part1() {
         let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
-        let buffered = BufReader::new(File::open(path).unwrap());
-        let acc = part1(buffered);
+        let acc = part1(read_input(path));
         assert_eq!(acc, 7);
     }
 
     #[test]
     fn test_submission_part1() {
         let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
-        let buffered = BufReader::new(File::open(path).unwrap());
-        let mut acc = part1(buffered);
-        println!("Day 1, Part 1: {}", acc);
+        let mut acc = part1(read_input(path));
+        assert_eq!(acc, 1665);
     }
 
     #[test]
     fn test_sample_part2() {
         let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
-        let buffered = BufReader::new(File::open(path).unwrap());
-        let acc = part2(buffered);
+        let acc = part2(read_input(path));
         assert_eq!(acc, 5);
     }
 
     #[test]
     fn test_submission_part2() {
         let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
-        let buffered = BufReader::new(File::open(path).unwrap());
-        let mut acc = part2(buffered);
-        println!("Day 1, Part 2: {}", acc);
+        let mut acc = part2(read_input(path));
+        assert_eq!(acc, 1702);
     }
 }
