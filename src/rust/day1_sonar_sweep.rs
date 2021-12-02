@@ -4,6 +4,10 @@ use std::io::{BufRead, BufReader};
 /// ToDo: rewrite in a more idiomatic and functional way
 /// ToDo: solve in a single pass
 
+const SAMPLE_PATH: &str = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
+const SUBMISSION_PATH: &str =
+    "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
+
 fn part1(numbers: Vec<usize>) -> usize {
     let mut prev = usize::MAX;
     let mut acc = 0;
@@ -39,29 +43,25 @@ mod tests {
 
     #[test]
     fn test_sample_part1() {
-        let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
-        let acc = part1(read_input(path));
+        let acc = part1(read_input(SAMPLE_PATH));
         assert_eq!(acc, 7);
     }
 
     #[test]
     fn test_submission_part1() {
-        let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
-        let mut acc = part1(read_input(path));
+        let mut acc = part1(read_input(SUBMISSION_PATH));
         assert_eq!(acc, 1665);
     }
 
     #[test]
     fn test_sample_part2() {
-        let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
-        let acc = part2(read_input(path));
+        let acc = part2(read_input(SAMPLE_PATH));
         assert_eq!(acc, 5);
     }
 
     #[test]
     fn test_submission_part2() {
-        let path = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
-        let mut acc = part2(read_input(path));
+        let mut acc = part2(read_input(SUBMISSION_PATH));
         assert_eq!(acc, 1702);
     }
 }
