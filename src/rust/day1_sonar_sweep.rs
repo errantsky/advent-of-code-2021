@@ -1,9 +1,9 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
-const SAMPLE_PATH: &str = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_sample.txt";
+const SAMPLE_PATH: &str = "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_sample.txt";
 const SUBMISSION_PATH: &str =
-    "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_part1_submission.txt";
+    "/Users/sep/CLionProjects/aoc-2021/src/test_files/day1_submission.txt";
 
 fn part1(numbers: Vec<usize>) -> usize {
     let mut ni = numbers.into_iter();

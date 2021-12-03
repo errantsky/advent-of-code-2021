@@ -12,15 +12,12 @@ fn part1(path: &str) -> usize {
         .map(|line| line.split(' ').collect::<Vec<_>>())
         .map(|vec| (vec[0], vec[1].parse::<usize>().unwrap()));
 
-    let (horiz_pos, depth) = commands
-        .fold((0, 0), |(p, d), cmd| {
-            match cmd {
-                ("forward", n) => (p + n, d),
-                ("up", n) => (p, d - n),
-                ("down", n) => (p, d + n),
-                _ => panic!("Oops!"),
-            }
-        });
+    let (horiz_pos, depth) = commands.fold((0, 0), |(p, d), cmd| match cmd {
+        ("forward", n) => (p + n, d),
+        ("up", n) => (p, d - n),
+        ("down", n) => (p, d + n),
+        _ => panic!("Oops!"),
+    });
     horiz_pos * depth
 }
 
