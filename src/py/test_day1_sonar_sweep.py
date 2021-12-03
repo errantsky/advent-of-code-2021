@@ -18,24 +18,24 @@ def part2(nums):
 
 
 def test_day1_part1_sample():
-    with open("/test_files/day1_sample.txt") as f:
+    with open("../test_files/day1_sample.txt") as f:
         numbers = [int(s.rstrip("\n")) for s in f.readlines()]
         assert part1(numbers) == 7
 
 
 def test_day1_part1_submission():
-    with open("/test_files/day1_submission.txt") as f:
+    with open("../test_files/day1_submission.txt") as f:
         numbers = [int(s.rstrip("\n")) for s in f.readlines()]
         assert part1(numbers) == 1665
 
 
 def test_day1_part2_sample():
-    with open("/test_files/day1_sample.txt") as f:
+    with open("../test_files/day1_sample.txt") as f:
         numbers = [int(s.rstrip("\n")) for s in f.readlines()]
         assert part2(numbers) == 5
 
 
 def test_day1_part2_submission():
-    with open("/test_files/day1_submission.txt") as f:
+    with open("../test_files/day1_submission.txt") as f:
         numbers = [int(s.rstrip("\n")) for s in f.readlines()]
         assert part2(numbers) == 1702
