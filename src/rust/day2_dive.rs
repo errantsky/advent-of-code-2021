@@ -6,21 +6,22 @@ const SUBMISSION_PATH: &str =
     "/Users/sep/CLionProjects/aoc-2021/src/test_files/day2_submission.txt";
 
 fn part1(path: &str) -> usize {
-    let lines = BufReader::new(File::open(path).unwrap()).lines();
-    let (p, d) = lines.fold((0, 0), |acc, l| {
-        let (horizontal_pos, depth) = acc;
-        let s = l.unwrap();
-        let splits: Vec<&str> = s.split(' ').collect();
-        let cmd = splits[0];
-        let val = splits[1].parse::<usize>().unwrap();
-        match cmd {
-            "forward" => (horizontal_pos + val, depth),
-            "up" => (horizontal_pos, depth - val),
-            "down" => (horizontal_pos, depth + val),
-            _ => panic!("Bad command!"),
-        }
-    });
-    p * d
+    let input = std::fs::read_to_string(path).unwrap();
+    let commands = input
+        .lines()
+        .map(|line| line.split(' ').collect::<Vec<_>>())
+        .map(|vec| (vec[0], vec[1].parse::<usize>().unwrap()));
+
+    let (horiz_pos, depth) = commands
+        .fold((0, 0), |(p, d), cmd| {
+            match cmd {
+                ("forward", n) => (p + n, d),
+                ("up", n) => (p, d - n),
+                ("down", n) => (p, d + n),
+                _ => panic!("Oops!"),
+            }
+        });
+    horiz_pos * depth
 }
 
 fn part2(path: &str) -> usize {
