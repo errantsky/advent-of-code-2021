@@ -21,3 +21,11 @@ Conditional `map`:
 ```python
 [x for x in iterable if cond]
 ```
+### Day 4
+#### Rust
+
+#### Python
+To split a string with variable whitespace use:
+```python
+var.split()
+```
