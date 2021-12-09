@@ -1,7 +1,7 @@
 def part1(inp):
     grid = [[0] * 1100 for _ in range(1100)]
     for line in inp:
-        x1, y1, x2, y2 = [int(x) for x in line.replace(' -> ', ',').split(',')]
+        x1, y1, x2, y2 = [int(x) for x in line.replace(" -> ", ",").split(",")]
         if x1 == x2:
             low = min(y1, y2)
             high = max(y1, y2)
@@ -52,24 +52,21 @@ def test_day5_sample():
 
 def test_day5_submission():
     with open(
-            "/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_submission.txt"
+        "/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_submission.txt"
     ) as f:
         inp = [s.rstrip("\n") for s in f.readlines()]
         assert part1(inp) == 16674
 
 
-
 def test_day5_part2_sample():
-    with open(
-            "/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_sample.txt"
-    ) as f:
+    with open("/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_sample.txt") as f:
         inp = [s.rstrip("\n") for s in f.readlines()]
         assert part1(inp) == 12
 
 
 def test_day5_part2_submission():
     with open(
-            "/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_submission.txt"
+        "/Users/sep/CLionProjects/aoc-2021/src/test_files/day5_submission.txt"
     ) as f:
         inp = [s.rstrip("\n") for s in f.readlines()]
         assert part1(inp) == 7075
