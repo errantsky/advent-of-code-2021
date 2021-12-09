@@ -1,3 +1,7 @@
+from functools import reduce
+from collections import deque
+
+
 def find_valid_neighbors(grid, i, j):
     n_rows = len(grid)
     n_cols = len(grid[0])
@@ -31,25 +35,26 @@ def part1(grid):
 def part2(grid, low_points):
     basin_lists = []
     for li, lj in low_points:
-        basin = [(li, lj)]
+        # With a normal DFS, some nodes will be visited multiple times, as grids have circular connections
+        basin = {(li, lj)}
         visited = set()
-        to_visit = [(li, lj)]
-        while len(to_visit) != 0:
+        to_visit = deque([(li, lj)])
+        while to_visit:
             i, j = to_visit.pop()
             visited.add((i, j))
             for ni, nj in find_valid_neighbors(grid, i, j):
-                if (ni, nj) not in visited:
-                    if grid[ni][nj] != 9 and grid[ni][nj] > grid[i][j]:
-                        to_visit.append((ni, nj))
-                        basin.append((ni, nj))
+                if (
+                    (ni, nj) not in visited
+                    and grid[ni][nj] != 9
+                    and grid[ni][nj] > grid[i][j]
+                ):
+                    to_visit.append((ni, nj))
+                    basin.add((ni, nj))
 
         basin_lists.append(basin)
 
-    res = 1
-    for length in sorted([len(bl) for bl in basin_lists])[-3:]:
-        res *= length
-
-    return res
+    basin_sizes = sorted([len(bl) for bl in basin_lists])[-3:]
+    return reduce(lambda left, right: left * right, basin_sizes)
 
 
 def test_day9_sample():
@@ -79,4 +84,4 @@ def test_day9_part2_submission():
     ) as f:
         inp = [[int(x) for x in s.rstrip("\n").lstrip()] for s in f.readlines()]
         low_points = find_low_points(inp)
-        assert part2(inp, low_points) == 1134
+        assert part2(inp, low_points) == 1092012

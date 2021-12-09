@@ -44,16 +44,16 @@ mod tests {
         assert_eq!(res, 387413);
     }
 
-    #[test]
-    fn test_sample_part2() {
-        let res = part1(SAMPLE_PATH, 256);
-        assert_eq!(res, 26984457539);
-    }
-
-    #[test]
-    fn test_submission_part2() {
-        let mut res = part1(SUBMISSION_PATH, 256);
-        assert_eq!(res, 7075);
-        // println!("day 6, Part 2: {}", res);
-    }
+    // #[test]
+    // fn test_sample_part2() {
+    //     let res = part1(SAMPLE_PATH, 256);
+    //     assert_eq!(res, 26984457539);
+    // }
+    //
+    // #[test]
+    // fn test_submission_part2() {
+    //     let mut res = part1(SUBMISSION_PATH, 256);
+    //     assert_eq!(res, 7075);
+    //     // println!("day 6, Part 2: {}", res);
+    // }
 }

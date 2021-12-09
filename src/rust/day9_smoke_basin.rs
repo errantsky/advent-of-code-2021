@@ -65,9 +65,9 @@ fn part1(grid: Vec<Vec<u32>>) -> usize {
 fn find_basin_sizes(grid: &Vec<Vec<u32>>, low_points: Vec<(usize, usize)>) -> usize {
     let n_rows = grid.len();
     let n_cols = grid[0].len();
-    let mut basins: Vec<Vec<(usize, usize)>> = Vec::new();
+    let mut basins: Vec<HashSet<(usize, usize)>> = Vec::new();
     for (lx, ly) in low_points {
-        let mut basin_members: Vec<(usize, usize)> = vec![(lx, ly)];
+        let mut basin_members: HashSet<(usize, usize)> = HashSet::from([(lx, ly)]);
         let mut visited: HashSet<(usize, usize)> = HashSet::new();
         let mut to_visit: Vec<(usize, usize)> = vec![(lx, ly)];
         while !to_visit.is_empty() {
@@ -145,6 +145,6 @@ mod tests {
     fn test_submission_part2() {
         let input = input_to_grid(SUBMISSION_PATH);
         let mut res = part2(input);
-        assert_eq!(res, 7075);
+        assert_eq!(res, 1092012);
     }
 }
