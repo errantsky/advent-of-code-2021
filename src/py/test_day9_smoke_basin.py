@@ -57,13 +57,13 @@ def part2(grid, low_points):
     return reduce(lambda left, right: left * right, basin_sizes)
 
 
-def test_day9_sample():
+def test_day9_part1_sample():
     with open("/Users/sep/CLionProjects/aoc-2021/src/test_files/day9_sample.txt") as f:
         inp = [[int(x) for x in s.rstrip("\n").lstrip()] for s in f.readlines()]
         assert part1(inp) == 15
 
 
-def test_day9_submission():
+def test_day9_part1_submission():
     with open(
         "/Users/sep/CLionProjects/aoc-2021/src/test_files/day9_submission.txt"
     ) as f:

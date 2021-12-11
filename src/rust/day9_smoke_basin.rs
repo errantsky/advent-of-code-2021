@@ -87,8 +87,7 @@ fn find_basin_sizes(grid: &Vec<Vec<u32>>, low_points: Vec<(usize, usize)>) -> us
         }
         basins.push(basin_members);
     }
-    let mut basins_lengths = basins.iter()
-        .map(|v| v.len()).collect::<Vec<usize>>();
+    let mut basins_lengths = basins.iter().map(|v| v.len()).collect::<Vec<usize>>();
     basins_lengths.sort();
 
     basins_lengths
